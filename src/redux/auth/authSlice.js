@@ -6,6 +6,7 @@ const authSlice = createSlice({
   initialState: {
     user: null,
     token: '',
+    isRefreshing: false,
   },
   extraReducers: builder => {
     builder
@@ -16,6 +17,7 @@ const authSlice = createSlice({
       })
       .addCase(refreshUser.fulfilled, (state, { payload }) => {
         state.user = payload;
+        
       });
   },
 });
