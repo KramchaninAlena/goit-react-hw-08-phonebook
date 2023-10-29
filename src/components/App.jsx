@@ -5,24 +5,25 @@ import Register from 'pages/Register';
 import Login from 'pages/Login';
 import Layout from 'Layout/Layout';
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { refreshUser } from 'redux/auth/operations';
 import { RestrictedRoute } from './RestrictedRoute';
 import { PrivateRoute } from './PrivateRoute';
+import { selectIsRefreshing } from 'redux/auth/selectors';
+import { Loader } from './Section/Loader';
 
 export default function App() {
   const dispatch = useDispatch();
-
+  const isRefreshing = useSelector(selectIsRefreshing);
   useEffect(() => {
     dispatch(refreshUser());
   }, [dispatch]);
-  return (
+  return isRefreshing ? (
+    <Loader />
+  ) : (
     <Routes>
       <Route path="/" element={<Layout />}>
-        <Route
-          index
-          element={<HomePage />} 
-        />
+        <Route index element={<HomePage />} />
         <Route
           path="/contacts"
           element={
@@ -31,7 +32,9 @@ export default function App() {
         />
         <Route
           path="/register"
-          element={<RestrictedRoute redirectTo="/contacts" component={<Register />} />}
+          element={
+            <RestrictedRoute redirectTo="/contacts" component={<Register />} />
+          }
         />
         <Route
           path="/login"
