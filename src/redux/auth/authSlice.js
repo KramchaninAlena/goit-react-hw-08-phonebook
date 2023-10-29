@@ -7,6 +7,7 @@ const authSlice = createSlice({
     user: null,
     token: '',
     isRefreshing: false,
+    isLoggedIn: false,
   },
   extraReducers: builder => {
     builder
@@ -14,9 +15,11 @@ const authSlice = createSlice({
         console.log(payload);
         state.token = payload.token;
         state.user = payload.user;
+        state.isLoggedIn = true;
       })
       .addCase(refreshUser.fulfilled, (state, { payload }) => {
         state.user = payload;
+        state.isLoggedIn = true;
         
       });
   },
