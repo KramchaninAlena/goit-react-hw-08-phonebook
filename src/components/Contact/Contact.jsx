@@ -10,16 +10,16 @@ export function Contact() {
   const isLoading = useSelector(selectLoading)
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(fetchContacts());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(fetchContacts());
+  // }, [dispatch]);
 
   return (
     <ul className={css.list}>
       {isLoading && <Loader />}
-      {contacts.map(({ id, name, phone }) => (
+      {contacts.map(({ id, name, number }) => (
         <li className={css.item} key={id}>
-          {name}: <span>{phone}</span>
+          {name}: <span>{number}</span>
           <button type="button" onClick={() => dispatch(deleteContact(id))}>
             Delete
           </button>

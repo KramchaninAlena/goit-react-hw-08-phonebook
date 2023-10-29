@@ -7,7 +7,7 @@ import Notiflix from 'notiflix';
 
 export default function Form({ createContacts }) {
   const [name, setName] = useState('');
-  const [phone, setPhone] = useState('');
+  const [number, setNumber] = useState('');
   const dispatch = useDispatch();
   const contacts = useSelector(selectContacts);
 
@@ -15,7 +15,7 @@ export default function Form({ createContacts }) {
     if (name === 'name') {
       setName(value);
     } else {
-      setPhone(value);
+      setNumber(value);
     }
   };
 
@@ -24,13 +24,13 @@ export default function Form({ createContacts }) {
     if (contacts.find(el => el.name === name)) {
       Notiflix.Notify.warning(`${name} this contact exists`);
       setName('');
-      setPhone('');
+      setNumber('');
       return;
     }
 
-    dispatch(addContact({ name, phone }));
+    dispatch(addContact({ name, number }));
     setName('');
-    setPhone('');
+    setNumber('');
   };
 
   return (
@@ -58,7 +58,7 @@ export default function Form({ createContacts }) {
         pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
         title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
         required
-        value={phone}
+        value={number}
         className={css.formInput}
       />
       <button className={css.formBtn}>Add Contact</button>
