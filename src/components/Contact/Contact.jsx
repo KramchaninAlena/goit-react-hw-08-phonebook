@@ -6,6 +6,7 @@ import { deleteContact, fetchContacts } from 'redux/thunks';
 import { Loader } from 'components/Section/Loader';
 import { selectIsLoggedIn } from 'redux/auth/selectors';
 
+
 export function Contact() {
   const contacts = useSelector(selectFilterName);
   const isLoading = useSelector(selectLoading);
@@ -13,22 +14,23 @@ export function Contact() {
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
   useEffect(() => {
-    if (isLoggedIn) {
-      dispatch(fetchContacts());
-    }
+    dispatch(fetchContacts());
   }, [dispatch, isLoggedIn]);
 
   return (
-    <ul className={css.list}>
-      {isLoading && <Loader />}
-      {contacts.map(({ id, name, number }) => (
-        <li className={css.item} key={id}>
-          {name}: <span>{number}</span>
-          <button type="button" onClick={() => dispatch(deleteContact(id))}>
-            Delete
-          </button>
-        </li>
-      ))}
-    </ul>
+    <div className={css.container}>
+      <ul className={css.list}>
+        {isLoading && <Loader />}
+
+        {contacts.map(({ id, name, number }) => (
+          <li className={css.item} key={id}>
+            {name}: <span>{number}</span>
+            <button type="button" onClick={() => dispatch(deleteContact(id))}>
+              Delete
+            </button>
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }

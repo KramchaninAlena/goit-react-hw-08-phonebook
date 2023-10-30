@@ -1,5 +1,6 @@
 import { useDispatch } from 'react-redux';
 import { registrationUser } from 'redux/auth/operations';
+import TextField from '@mui/material/TextField';
 
 const Register = () => {
   const dispatch = useDispatch();
@@ -19,7 +20,8 @@ const Register = () => {
     <div>
       Register
       <form onSubmit={handleSubmit}>
-        <input type="text" name="name" />
+      <TextField id="outlined-basic" label="Name" variant="outlined" type="text" name="name"/>
+        {/* <input type="text" name="name" /> */}
         <input type="email" name="email" />
         <input type="password" name="password" />
         <button type="submit">Register</button>

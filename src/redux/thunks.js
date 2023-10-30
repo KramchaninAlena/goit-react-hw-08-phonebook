@@ -1,14 +1,16 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { fetchAddContact, fetchDeleteContact, getContacts } from 'api/api';
 import Notiflix from 'notiflix';
+import { setAuthHeader } from './auth/operations';
 
-export const fetchContacts = createAsyncThunk('contacts/fetchAll', async () => {
+export const fetchContacts = createAsyncThunk('contacts/fetchAll', async (_, { rejectWithValue, getState }) => {
   try {
+    const token = getState().auth.token;
+    setAuthHeader(token)
     const data = await getContacts();
-    
     return data;
   } catch (error) {
-    console.log(error);
+    rejectWithValue(error);
     
   }
 });
