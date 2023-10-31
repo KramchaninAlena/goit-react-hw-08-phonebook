@@ -15,7 +15,7 @@ const Login = () => {
       password: password.value,
     };
     dispatch(logIn(userData));
-    console.log(userData)
+   
   };
   return (
     <div className={css.container}>
@@ -38,7 +38,7 @@ const Login = () => {
           sx={{ bgcolor: '#fffaf0'}}
         />
         <Button type='submit' variant="contained" className={css.btn} >Log In</Button>
-        {/* <p>Or <NavLink to='/register'>Register</NavLink></p> */}
+     
       </form>
     </div>
   );

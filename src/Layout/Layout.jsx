@@ -5,11 +5,12 @@ import { NavLink, Outlet } from 'react-router-dom';
 import { logOut } from 'redux/auth/operations';
 import { selectIsLoggedIn } from 'redux/auth/selectors';
 import css from './Layout.module.css';
+import { useAuth } from 'components/hooks/useAuth';
 
 
 const Layout = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
-  
+  const { user } = useAuth();
   
   const dispatch = useDispatch();
   return (
@@ -42,7 +43,7 @@ const Layout = () => {
                 </Typography>
               )} */}
               {isLoggedIn ? (
-              <p >Welcome</p>
+              <p >Welcome, {user.name}</p>
             ) : (
               <NavLink  to="/register">
                 Registration
