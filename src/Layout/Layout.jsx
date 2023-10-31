@@ -43,7 +43,7 @@ const Layout = () => {
                 </Typography>
               )} */}
               {isLoggedIn ? (
-              <p >Welcome, {user.name}</p>
+              <p className={css.text}>Welcome, {user.name}</p>
             ) : (
               <Typography variant="h6" component="div">
               <NavLink  to="/register" className={css.navigate}>
