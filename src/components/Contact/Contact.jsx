@@ -5,9 +5,8 @@ import { useEffect } from 'react';
 import { deleteContact, fetchContacts } from 'redux/thunks';
 import { Loader } from 'components/Section/Loader';
 import { selectIsLoggedIn } from 'redux/auth/selectors';
-import { Avatar, Button, IconButton, List, ListItem, ListItemAvatar } from '@mui/material';
+import { Button, List } from '@mui/material';
 import { Delete } from '@mui/icons-material';
-
 
 export function Contact() {
   const contacts = useSelector(selectFilterName);
@@ -21,26 +20,26 @@ export function Contact() {
 
   return (
     <div className={css.container}>
-      <List
-      
-    >
-      <ul className={css.list}>
-        {isLoading && <Loader />}
+      <List>
+        <ul className={css.list}>
+          {isLoading && <Loader />}
 
-        {contacts.map(({ id, name, number }) => (
-         
-          <li className={css.item} key={id}>
-            {/* <ListItemAvatar>
-              <Avatar></Avatar>
-            </ListItemAvatar> */}
-             <span>{name}: {number}</span>
-            <Button variant="contained" startIcon={<Delete />}  onClick={() => dispatch(deleteContact(id))}>Delete</Button>
-            
-          </li>
-       
-        ))}
-      </ul>
+          {contacts.map(({ id, name, number }) => (
+            <li className={css.item} key={id}>
+              <span>
+                {name}: {number}
+              </span>
+              <Button
+                variant="contained"
+                startIcon={<Delete />}
+                onClick={() => dispatch(deleteContact(id))}
+              >
+                Delete
+              </Button>
+            </li>
+          ))}
+        </ul>
       </List>
-     </div>
+    </div>
   );
 }

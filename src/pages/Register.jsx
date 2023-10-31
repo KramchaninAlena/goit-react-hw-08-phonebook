@@ -44,8 +44,7 @@ const Register = () => {
           sx={{ bgcolor: '#fffaf0'}}
         />
         <Button type='submit' variant="contained" className={css.btn} >Register</Button>        
-        {/* <button type="submit">Register</button> */}
-      </form>
+         </form>
     </div>
   );
 };

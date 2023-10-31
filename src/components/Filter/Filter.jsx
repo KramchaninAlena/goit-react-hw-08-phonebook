@@ -14,11 +14,7 @@ export  function Filter() {
       type="text"
       name="filter"
       className={css.filterInput} sx={{ bgcolor: '#fffaf0'}}/>
-    {/* <input onChange={handleChange}
-      type="text"
-      name="filter"
-      className={css.filterInput}
-      /> */}
+    
       </div>
   )
 }

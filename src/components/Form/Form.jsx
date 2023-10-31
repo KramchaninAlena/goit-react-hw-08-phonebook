@@ -54,17 +54,7 @@ export default function Form({ createContacts }) {
         value={number}
         className={css.formInput} sx={{ bgcolor: '#fffaf0'}}/>
       
-      {/* <input
-        onChange={handleChange}
-        type="tel"
-        name="number"
-        pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-        title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-        required
-        value={number}
-        className={css.formInput}
-      /> */}
-      {/* <button className={css.formBtn}>Add Contact</button> */}
+      
       <Button type='submit' variant="contained" className={css.formBtn} >Add Contact</Button>
     </form>
   );
