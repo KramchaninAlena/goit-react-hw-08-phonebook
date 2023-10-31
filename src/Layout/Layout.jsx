@@ -9,60 +9,70 @@ import { useAuth } from 'components/hooks/useAuth';
 
 const Layout = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
-  const {user} = useAuth()
-  console.log(user.name)
+  const { user } = useAuth();
+  console.log(user.name);
   const dispatch = useDispatch();
   return (
     <div className={css.container}>
       <AppBar position="static">
         <Toolbar>
-        <header className={css.header}>
-        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-        <NavLink to="/" className={css.navigate}>
-            Home
-          </NavLink>
-          </Typography>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 4}}
-          >
-          <NavLink to="contacts" className={css.navigate}>
-            Contacts
-          </NavLink>
-          </Typography>
-          
-        <div className={css.auth}>
-        <Typography variant="h6" component="div" sx={{  }}>
-          {!isLoggedIn && <NavLink to="register" className={css.navigate}>
-            Registration
-          </NavLink>}
-        
-          </Typography>
-          {isLoggedIn && <Typography variant="h6" component="div" sx={{ flexGrow: 4}}>
-                    {`Welcome ${user.name}`}
-                    </Typography>}
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-          
-          {isLoggedIn ? (
-            <Button variant="outlined" 
-            color="inherit"
-            type="button"
-            onClick={() => dispatch(logOut())}
-            className={css.logOut}>Log Out</Button>
+          <header className={css.header}>
+            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+              <NavLink to="/" className={css.navigate}>
+                Home
+              </NavLink>
+            </Typography>
+            <Typography variant="h6" component="div" sx={{ flexGrow: 4 }}>
+              <NavLink to="contacts" className={css.navigate}>
+                Contacts
+              </NavLink>
+            </Typography>
+
+            <div className={css.auth}>
+              {/* <Typography variant="h6" component="div" sx={{}}>
+                {!isLoggedIn && (
+                  <NavLink to="register" className={css.navigate}>
+                    Registration
+                  </NavLink>
+                )}
+              </Typography>
+              {isLoggedIn && (
+                <Typography variant="h6" component="div" sx={{ flexGrow: 4 }}>
+                  Welcome {user.name}
+                </Typography>
+              )} */}
+              {isLoggedIn ? (
+              <p >Welcome, {user.name}</p>
             ) : (
-            <NavLink to="login" className={css.navigate}>
-              Log In
-            </NavLink>
-          )}
-          </Typography>
-          
-        </div>
-        </header>
+              <NavLink  to="/register">
+                Registration
+              </NavLink>
+            )}
+              <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                {isLoggedIn ? (
+                  <Button
+                    variant="outlined"
+                    color="inherit"
+                    type="button"
+                    onClick={() => dispatch(logOut())}
+                    className={css.logOut}
+                  >
+                    Log Out
+                  </Button>
+                ) : (
+                  <NavLink to="login" className={css.navigate}>
+                    Log In
+                  </NavLink>
+                )}
+              </Typography>
+            </div>
+          </header>
         </Toolbar>
-        </AppBar>
-              
-        <main>
-          <Outlet />
-        </main>
-     
+      </AppBar>
+
+      <main>
+        <Outlet />
+      </main>
     </div>
   );
 };
