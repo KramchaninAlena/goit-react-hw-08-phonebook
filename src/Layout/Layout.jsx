@@ -42,7 +42,7 @@ const Layout = () => {
                 </Typography>
               )} */}
               {isLoggedIn ? (
-              <p >Welcome, {user.name}</p>
+              <p >Welcome</p>
             ) : (
               <NavLink  to="/register">
                 Registration
