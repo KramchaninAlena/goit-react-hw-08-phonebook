@@ -3,6 +3,8 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { logIn } from 'redux/auth/operations';
+import css from './login.module.css'
+
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -17,14 +19,16 @@ const Login = () => {
     console.log(userData)
   };
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
+    <div className={css.container}>
+      
+      <form onSubmit={handleSubmit} className={css.form}>
         <TextField
           id="outlined-basic"
           label="Name"
           variant="outlined"
           type="email"
           name="email"
+          sx={{ bgcolor: '#fffaf0'}}
         />
         <TextField
           id="outlined-basic"
@@ -32,9 +36,10 @@ const Login = () => {
           variant="outlined"
           type="password"
           name="password"
+          sx={{ bgcolor: '#fffaf0'}}
         />
-        <Button type='submit' variant="contained">Log In</Button>
-        <p>Or <NavLink to='/register'>Register</NavLink></p>
+        <Button type='submit' variant="contained" className={css.btn} >Log In</Button>
+        {/* <p>Or <NavLink to='/register'>Register</NavLink></p> */}
       </form>
     </div>
   );

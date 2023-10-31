@@ -1,6 +1,13 @@
 .container {
     margin: 0 auto;
   padding-left: 50px;
+  display: flex;
+    flex-direction: column;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 20px;
+    padding-bottom: 40px;
+    gap: 20px;
 }
 .list {
     display: flex;

@@ -5,6 +5,8 @@ import { useEffect } from 'react';
 import { deleteContact, fetchContacts } from 'redux/thunks';
 import { Loader } from 'components/Section/Loader';
 import { selectIsLoggedIn } from 'redux/auth/selectors';
+import { Button, IconButton } from '@mui/material';
+import { Delete } from '@mui/icons-material';
 
 
 export function Contact() {
@@ -25,9 +27,13 @@ export function Contact() {
         {contacts.map(({ id, name, number }) => (
           <li className={css.item} key={id}>
             {name}: <span>{number}</span>
-            <button type="button" onClick={() => dispatch(deleteContact(id))}>
+            <Button variant="contained" startIcon={<Delete />}  onClick={() => dispatch(deleteContact(id))}>Delete</Button>
+            {/* <IconButton aria-label="delete">
+  <Delete />
+</IconButton> */}
+            {/* <button type="button" onClick={() => dispatch(deleteContact(id))}>
               Delete
-            </button>
+            </button> */}
           </li>
         ))}
       </ul>

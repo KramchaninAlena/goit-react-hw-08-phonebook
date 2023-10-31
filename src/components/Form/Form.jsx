@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { selectContacts } from 'redux/selectors';
 import { addContact } from 'redux/thunks';
 import Notiflix from 'notiflix';
+import { Button, TextField } from '@mui/material';
 
 export default function Form({ createContacts }) {
   const [name, setName] = useState('');
@@ -35,23 +36,25 @@ export default function Form({ createContacts }) {
 
   return (
     <form className={css.form} onSubmit={onSubmit}>
-      <label htmlFor="InputName" className={css.formLabel}>
-        Name
-      </label>
-      <input
-        onChange={handleChange}
+      
+      <TextField id="outlined-basic" label="Name" variant="outlined" onChange={handleChange}
         type="text"
         name="name"
         pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
         title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
         required
         value={name}
-        className={css.formInput}
-      />
-      <label htmlFor="Inputnumber" className={css.formLabel}>
-        Number
-      </label>
-      <input
+        className={css.formInput} sx={{ bgcolor: '#fffaf0'}}/>
+     <TextField id="outlined-basic" label="Number" variant="outlined" onChange={handleChange}
+        type="tel"
+        name="number"
+        pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+        title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+        required
+        value={number}
+        className={css.formInput} sx={{ bgcolor: '#fffaf0'}}/>
+      
+      {/* <input
         onChange={handleChange}
         type="tel"
         name="number"
@@ -60,8 +63,9 @@ export default function Form({ createContacts }) {
         required
         value={number}
         className={css.formInput}
-      />
-      <button className={css.formBtn}>Add Contact</button>
+      /> */}
+      {/* <button className={css.formBtn}>Add Contact</button> */}
+      <Button type='submit' variant="contained" className={css.formBtn} >Add Contact</Button>
     </form>
   );
 }
