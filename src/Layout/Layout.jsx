@@ -3,12 +3,13 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, Outlet } from 'react-router-dom';
 import { logOut } from 'redux/auth/operations';
-import { selectIsLoggedIn, selectUser } from 'redux/auth/selectors';
+import { selectIsLoggedIn } from 'redux/auth/selectors';
 import css from './Layout.module.css';
+import { useAuth } from 'components/hooks/useAuth';
 
 const Layout = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
-  const user = useSelector(selectUser)
+  const {user} = useAuth()
   console.log(user.name)
   const dispatch = useDispatch();
   return (
