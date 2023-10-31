@@ -46,7 +46,7 @@ const Layout = () => {
               <p >Welcome, {user.name}</p>
             ) : (
               <Typography variant="h6" component="div">
-              <NavLink  to="/register">
+              <NavLink  to="/register" className={css.navigate}>
                 Registration
               </NavLink>
               </Typography>
