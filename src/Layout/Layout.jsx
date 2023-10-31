@@ -45,9 +45,11 @@ const Layout = () => {
               {isLoggedIn ? (
               <p >Welcome, {user.name}</p>
             ) : (
+              <Typography variant="h6" component="div">
               <NavLink  to="/register">
                 Registration
               </NavLink>
+              </Typography>
             )}
               <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                 {isLoggedIn ? (
