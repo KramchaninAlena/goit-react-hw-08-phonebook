@@ -1,4 +1,4 @@
-import { AppBar, Container } from '@mui/material';
+import { AppBar, Button, Container, Toolbar, Typography } from '@mui/material';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, Outlet } from 'react-router-dom';
@@ -11,31 +11,48 @@ const Layout = () => {
   const dispatch = useDispatch();
   return (
     <div className={css.container}>
+      <AppBar position="static">
+        <Toolbar>
         <header className={css.header}>
-          <NavLink to="/" className={css.navigate}>
+        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+        <NavLink to="/" className={css.navigate}>
             Home
           </NavLink>
+          </Typography>
+          <Typography variant="h6" component="div" sx={{ flexGrow: 4}}
+          >
           <NavLink to="contacts" className={css.navigate}>
             Contacts
           </NavLink>
-          <NavLink to="register" className={css.navigate}>
+          </Typography>
+          
+        <div className={css.auth}>
+        <Typography variant="h6" component="div" sx={{  }}>
+          {!isLoggedIn && <NavLink to="register" className={css.navigate}>
             Registration
-          </NavLink>
+          </NavLink>}
+        
+          </Typography>
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
           {isLoggedIn ? (
-            <button
-              className={css.logOut}
-              type="button"
-              onClick={() => dispatch(logOut())}
-            >
-              Log Out
-            </button>
+            <Button variant="outlined" 
+            color="inherit"
+            type="button"
+            onClick={() => dispatch(logOut())}
+            className={css.logOut}>Log Out</Button>
+            
           ) : (
             <NavLink to="login" className={css.navigate}>
               Log In
             </NavLink>
           )}
+          </Typography>
+          
+        </div>
         </header>
-              {/* <Container maxWidth="sm" sx={{ bgcolor: '#f3f5b1'}}> */}
+        </Toolbar>
+        </AppBar>
+              
         <main>
           <Outlet />
         </main>

@@ -5,7 +5,7 @@ import { useEffect } from 'react';
 import { deleteContact, fetchContacts } from 'redux/thunks';
 import { Loader } from 'components/Section/Loader';
 import { selectIsLoggedIn } from 'redux/auth/selectors';
-import { Button, IconButton } from '@mui/material';
+import { Avatar, Button, IconButton, List, ListItem, ListItemAvatar } from '@mui/material';
 import { Delete } from '@mui/icons-material';
 
 
@@ -21,22 +21,26 @@ export function Contact() {
 
   return (
     <div className={css.container}>
+      <List
+      
+    >
       <ul className={css.list}>
         {isLoading && <Loader />}
 
         {contacts.map(({ id, name, number }) => (
+         
           <li className={css.item} key={id}>
-            {name}: <span>{number}</span>
+            {/* <ListItemAvatar>
+              <Avatar></Avatar>
+            </ListItemAvatar> */}
+             <span>{name}: {number}</span>
             <Button variant="contained" startIcon={<Delete />}  onClick={() => dispatch(deleteContact(id))}>Delete</Button>
-            {/* <IconButton aria-label="delete">
-  <Delete />
-</IconButton> */}
-            {/* <button type="button" onClick={() => dispatch(deleteContact(id))}>
-              Delete
-            </button> */}
+            
           </li>
+       
         ))}
       </ul>
-    </div>
+      </List>
+     </div>
   );
 }

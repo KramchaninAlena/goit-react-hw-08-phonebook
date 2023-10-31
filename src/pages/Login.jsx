@@ -24,7 +24,7 @@ const Login = () => {
       <form onSubmit={handleSubmit} className={css.form}>
         <TextField
           id="outlined-basic"
-          label="Name"
+          label="Email"
           variant="outlined"
           type="email"
           name="email"
@@ -32,7 +32,7 @@ const Login = () => {
         />
         <TextField
           id="outlined-basic"
-          label="Email"
+          label="Password"
           variant="outlined"
           type="password"
           name="password"
